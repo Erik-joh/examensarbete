@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :exarb_app, ExarbApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "J9pth6Klm",
   database: "exarb_app_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

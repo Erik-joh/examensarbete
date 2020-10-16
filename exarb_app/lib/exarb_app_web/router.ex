@@ -1,5 +1,6 @@
 defmodule ExarbAppWeb.Router do
   use ExarbAppWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,11 +15,29 @@ defmodule ExarbAppWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
+
+  scope "/" do
+    pipe_through :browser
+
+    pow_routes()
+  end
+
   scope "/", ExarbAppWeb do
     pipe_through :browser
 
     live "/", PageLive, :index
   end
+
+  scope "/" do
+    pipe_through [:browser, :protected]
+
+    get "/test", TestController, :index
+  end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", ExarbAppWeb do
