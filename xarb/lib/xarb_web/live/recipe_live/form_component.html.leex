@@ -1,0 +1,22 @@
+<h2><%= @title %></h2>
+
+<%= f = form_for @changeset, "#",
+  id: "recipe-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :title %>
+  <%= text_input f, :title %>
+  <%= error_tag f, :title %>
+
+  <%= label f, :instructions %>
+  <%= textarea f, :instructions %>
+  <%= error_tag f, :instructions %>
+
+  <%= label f, :source %>
+  <%= text_input f, :source %>
+  <%= error_tag f, :source %>
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>

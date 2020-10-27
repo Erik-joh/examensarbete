@@ -9,6 +9,7 @@ defmodule Xarb.Accounts.User do
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
 
+    has_many :recipes, Xarb.Content.Recipe
     timestamps()
   end
 

@@ -57,6 +57,13 @@ defmodule XarbWeb.Router do
   scope "/", XarbWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/recipes", RecipeLive.Index, :index
+    live "/recipes/new", RecipeLive.Index, :new
+    live "/recipes/:id/edit", RecipeLive.Index, :edit
+
+    live "/recipes/:id", RecipeLive.Show, :show
+    live "/recipes/:id/show/edit", RecipeLive.Show, :edit
+
     live "/", PageLive, :index
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings/update_password", UserSettingsController, :update_password
