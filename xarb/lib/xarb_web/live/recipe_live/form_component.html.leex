@@ -18,5 +18,53 @@
   <%= text_input f, :source %>
   <%= error_tag f, :source %>
 
-  <%= submit "Save", phx_disable_with: "Saving..." %>
+  <h2 class="mt-4 mb-2 font-bold">Ingredienser</h2>
+
+  <%= for ri <- inputs_for(f, :recipe_ingredients) do %>
+  <table>
+  <thead>
+    <tr>
+
+    </tr>
+  </thead>
+  <tbody id="recipe_ingredients">
+
+      <tr id="ingredient">
+        <%= if ri.data.id != nil do %>
+          <%= hidden_input ri, :id %>
+        <% end %>
+        <td>
+          <%= label ri, :amount %>
+          <%= text_input ri, :amount, class: "form-control" %>
+          <%= error_tag ri, :amount %>
+        </td>
+        <td>
+          <%= label ri, :measurement %>
+          <%= text_input ri, :measurement, class: "form-control" %>
+          <%= error_tag ri, :measurement %>
+        </td>
+        <td>
+          <%= label ri, :name %>
+          <%= text_input ri, :name, class: "form-control" %>
+          <%= error_tag ri, :name %>
+        </td>
+        <td>
+          <%= label ri, :delete %><br>
+        <%= if is_nil(ri.data.temp_id) do %>
+          <%= checkbox ri, :delete %>
+        <% else %>
+          <%= hidden_input ri, :temp_id %>
+          <a href="#" phx-click="remove-recipe_ingredient" phx-value-remove="<%= ri.data.temp_id %>" phx-target="<%= @myself %>">&times</a>
+        <% end %>
+        </td>
+      </tr>
+
+  </tbody>
+</table>
+<% end %>
+
+  <a href="#" phx-click="add-recipe_ingredient" phx-target="<%= @myself %>">Add ingredient</a>
+  <p></p>
+  <div><%= submit "Save", phx_disable_with: "Saving..." %></div>
+
 </form>

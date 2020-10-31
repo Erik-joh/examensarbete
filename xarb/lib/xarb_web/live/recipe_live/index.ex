@@ -25,7 +25,7 @@ defmodule XarbWeb.RecipeLive.Index do
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Recipe")
-    |> assign(:recipe, %Recipe{})
+    |> assign(:recipe, %Recipe{recipe_ingredients: []})
   end
 
   defp apply_action(socket, :index, _params) do
@@ -42,7 +42,9 @@ defmodule XarbWeb.RecipeLive.Index do
     {:noreply, assign(socket, :recipes, list_recipes(socket.assigns.current_user))}
   end
 
+
   defp list_recipes(user) do
     Content.list_recipes(user)
   end
+
 end

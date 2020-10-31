@@ -7,6 +7,7 @@ defmodule Xarb.Content.Recipe do
     field :source, :string
     field :title, :string
     belongs_to :user, Xarb.Accounts.User
+    has_many :recipe_ingredients, Xarb.Content.Recipe_ingredient
 
     timestamps()
   end
@@ -17,5 +18,6 @@ defmodule Xarb.Content.Recipe do
     |> cast(attrs, [:title, :instructions, :source])
     |> validate_required([:title, :instructions, :source])
     |> unique_constraint(:title, name: :recipes_title_index)
+    |> cast_assoc(:recipe_ingredients)
   end
 end

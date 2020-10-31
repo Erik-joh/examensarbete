@@ -1,4 +1,4 @@
-<h1>Show Recipe</h1>
+
 
 <%= if @live_action in [:edit] do %>
   <%= live_modal @socket, XarbWeb.RecipeLive.FormComponent,
@@ -8,24 +8,41 @@
     recipe: @recipe,
     return_to: Routes.recipe_show_path(@socket, :show, @recipe) %>
 <% end %>
-
+<h1><%= @recipe.title %></h1>
 <ul>
 
   <li>
-    <strong>Title:</strong>
-    <%= @recipe.title %>
+    <strong>Instruktioner:</strong>
+    <p><%= @recipe.instructions %><p>
   </li>
 
-  <li>
-    <strong>Instructions:</strong>
-    <%= @recipe.instructions %>
-  </li>
 
-  <li>
-    <strong>Source:</strong>
+
+  <strong>Ingredienser:</strong>
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Measurement</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="recipe_ingredients">
+    <%= for ingredient  <- @recipe.recipe_ingredients do%>
+      <tr id="ingredient-<%= ingredient.id %>">
+        <td><%= ingredient.amount %></td>
+        <td><%= ingredient.measurement %></td>
+        <td><%= ingredient.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<li>
+    <strong>Källa:</strong>
     <%= @recipe.source %>
   </li>
-
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.recipe_show_path(@socket, :edit, @recipe), class: "button" %></span>
