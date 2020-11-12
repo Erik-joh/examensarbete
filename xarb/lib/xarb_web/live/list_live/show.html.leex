@@ -1,0 +1,48 @@
+<h1>Show List</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, XarbWeb.ListLive.FormComponent,
+    id: @list.id,
+    title: @page_title,
+    action: @live_action,
+    list: @list,
+    return_to: Routes.list_show_path(@socket, :show, @list) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Titel:</strong>
+    <%= @list.titel %>
+  </li>
+
+  <li>
+    <strong>Finished:</strong>
+    <%= @list.finished %>
+  </li>
+
+ <strong>Ingredienser:</strong>
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Measurement</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="recipe_ingredients">
+    <%= for ingredient  <- @list.list_ingredients do%>
+      <tr id="ingredient-<%= ingredient.id %>">
+        <td><%= ingredient.amount %></td>
+        <td><%= ingredient.measurement %></td>
+        <td><%= ingredient.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.list_show_path(@socket, :edit, @list), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.list_index_path(@socket, :index) %></span>

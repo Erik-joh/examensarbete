@@ -1,9 +1,9 @@
-defmodule XarbWeb.RecipeLive.Show do
+defmodule XarbWeb.ListLive.Show do
   use XarbWeb, :live_view
 
+  alias Xarb.Shoppinglist
+  alias Xarb.Shoppinglist.List
   alias Xarb.Accounts
-  alias Xarb.Content
-  alias Xarb.Content.Recipe
 
   @impl true
   def mount(_params, %{"user_token" => token}, socket) do
@@ -16,18 +16,18 @@ defmodule XarbWeb.RecipeLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:recipe, get_recipe(socket.assigns.current_user ,id))}
+     |> assign(:list, get_list(socket.assigns.current_user ,id))}
   end
 
-  defp page_title(:show), do: "Show Recipe"
-  defp page_title(:edit), do: "Edit Recipe"
+  defp page_title(:show), do: "Show List"
+  defp page_title(:edit), do: "Edit List"
 
-  def get_recipe(user,id) do
-    recipe = Content.get_recipe!(user,id)
-    if recipe.recipe_ingredients == nil do
-      %Recipe{recipe_ingredients: []}
+  def get_list(user,id) do
+    list = Shoppinglist.get_list!(user,id)
+    if list.list_ingredients == nil do
+      %List{list_ingredients: []}
     else
-      recipe
+      list
     end
   end
 end

@@ -10,6 +10,8 @@ defmodule Xarb.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     has_many :recipes, Xarb.Content.Recipe
+    has_many :lists, Xarb.Shoppinglist.List
+
     timestamps()
   end
 

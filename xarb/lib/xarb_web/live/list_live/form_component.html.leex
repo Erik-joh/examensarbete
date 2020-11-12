@@ -1,0 +1,72 @@
+<h2><%= @title %></h2>
+
+<%= f = form_for @changeset, "#",
+  id: "list-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :titel %>
+  <%= text_input f, :titel %>
+  <%= error_tag f, :titel %>
+
+  <%= label f, :finished %>
+  <%= checkbox f, :finished %>
+  <%= error_tag f, :finished %>
+
+  <%= label f, :parser %>
+  <%= textarea f, :parser %>
+  <%= error_tag f, :parser %>
+
+
+  <a href="#" phx-click="add-parsed_list_ingredients" phx-value-list="<%= input_value(f, :parser) %>" phx-target="<%= @myself %>">Add ingredients</a>
+
+  <h2 class="mt-4 mb-2 font-bold">Ingredienser</h2>
+
+  <%= for li <- inputs_for(f, :list_ingredients) do %>
+  <table>
+  <thead>
+    <tr>
+
+    </tr>
+  </thead>
+  <tbody id="list_ingredients">
+
+      <tr id="ingredient">
+        <%= if li.data.id != nil do %>
+          <%= hidden_input li, :id %>
+        <% end %>
+        <td>
+          <%= label li, :amount %>
+          <%= text_input li, :amount, class: "form-control" %>
+          <%= error_tag li, :amount %>
+        </td>
+        <td>
+          <%= label li, :measurement %>
+          <%= text_input li, :measurement, class: "form-control" %>
+          <%= error_tag li, :measurement %>
+        </td>
+        <td>
+          <%= label li, :name %>
+          <%= text_input li, :name, class: "form-control" %>
+          <%= error_tag li, :name %>
+        </td>
+        <td>
+          <%= label li, :delete %><br>
+        <%= if is_nil(li.data.temp_id) do %>
+          <%= checkbox li, :delete %>
+        <% else %>
+          <%= hidden_input li, :temp_id %>
+          <a href="#" phx-click="remove-list_ingredient" phx-value-remove="<%= li.data.temp_id %>" phx-target="<%= @myself %>">&times</a>
+        <% end %>
+        </td>
+      </tr>
+
+  </tbody>
+</table>
+<% end %>
+
+  <a href="#" phx-click="add-list_ingredient" phx-target="<%= @myself %>">Add ingredient</a>
+  <p></p>
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>
