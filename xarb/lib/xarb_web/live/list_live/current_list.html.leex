@@ -1,0 +1,62 @@
+<section class="current_list">
+  <h1>current list<h1>
+
+
+  <%= if @list != [] do %>
+
+  <div>
+    <span>
+      <strong>Titel:</strong>
+      <%= @list.titel %>
+    </span>
+
+    <span>
+      <strong>Finished:</strong>
+      <%= @list.finished %>
+    </span>
+  <div>
+
+  <strong class="ingredients_header">Ingredienser:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Measurement</th>
+        <th>Name</th>
+        <th>Done</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="recipe_ingredients">
+      <%= for ingredient  <- @list.list_ingredients do%>
+        <%=if !ingredient.done do%>
+        <tr id="ingredient-<%= ingredient.id %>">
+          <td><%= ingredient.amount %></td>
+          <td><%= ingredient.measurement %></td>
+          <td><%= ingredient.name %></td>
+          <td><a href="#" phx-click="done-list_ingredient" phx-value-id="<%= ingredient.id %>" >Klar</a></td>
+        </tr>
+        <%end %>
+      <% end %>
+    </tbody>
+  </table>
+  <table>
+    <tbody id="recipe_ingredients">
+        <div><strong class="ingredients_header">Plockade ingredienser:</strong></div>
+        <%= for ingredient  <- @list.list_ingredients do%>
+          <%=if ingredient.done do%>
+            <tr id="ingredient-<%= ingredient.id %>">
+              <td><%= ingredient.amount %></td>
+              <td><%= ingredient.measurement %></td>
+              <td><%= ingredient.name %></td>
+              <td><a href="#" phx-click="done-list_ingredient" phx-value-id="<%= ingredient.id %>" >Ångra</a></td>
+            </tr>
+          <%end %>
+        <% end %>
+        </tbody>
+  </table>
+  <% else  %>
+  <h3>No current shopping list exists</h3>
+  <% end %>
+</section>
