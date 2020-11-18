@@ -1,11 +1,17 @@
 .current_list{
+    height: 85vh;
+    margin: 40px 40px;
+    *{
+        border-color: #bdbdbd;
+    }
     
     h1 {
         height: 30px;
+        padding-top: 20px;
     }
     th,td {
         color: #000000;
-        font-family: "Helvetica", "Arial", sans-serif;
+        
         font-size: 20px;
         font-weight: 300;
         padding: 5px 0px;
@@ -15,7 +21,7 @@
     }
     span{
         color: #000000;
-        font-family: "Helvetica", "Arial", sans-serif;
+        
         font-size: 20px;
         font-weight: 300;
         padding: 5px 0px;
@@ -23,5 +29,12 @@
     }
     .ingredients_header {
         font-size: 20px;
+        
+    }
+    a{
+        color: gray;
+    }
+    a:hover{
+        color: black;
     }
 }

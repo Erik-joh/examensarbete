@@ -4,8 +4,8 @@ defmodule Xarb.Repo.Migrations.CreateRecipeIngredients do
   def change do
     create table(:recipe_ingredients) do
       add :name, :string, null: false
-      add :amount, :integer, null: false
-      add :measurement, :string, null: false
+      add :amount, :float
+      add :measurement, :string
       add :recipe_id, references(:recipes, on_delete: :delete_all)
 
       timestamps()

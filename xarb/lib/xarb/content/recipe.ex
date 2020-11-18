@@ -6,6 +6,7 @@ defmodule Xarb.Content.Recipe do
     field :instructions, :string
     field :source, :string
     field :title, :string
+    field :parser, :string, virtual: true
     belongs_to :user, Xarb.Accounts.User
     has_many :recipe_ingredients, Xarb.Content.Recipe_ingredient
 

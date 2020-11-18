@@ -3,6 +3,7 @@ defmodule XarbWeb.RecipeLive.FormComponent do
 
   alias Xarb.Content
   alias Xarb.Content.Recipe_ingredient
+  alias Xarb.Parser
 
   @impl true
   def update(%{recipe: recipe} = assigns, socket) do
@@ -55,6 +56,33 @@ defmodule XarbWeb.RecipeLive.FormComponent do
       |> Ecto.Changeset.put_assoc(:recipe_ingredients, recipe_ingredients)
 
     {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("add-parsed_recipe_ingredients", %{"recipe" => recipe_params}, socket) do
+    changeset = case IO.inspect(Parser.parse_ingredients(recipe_params)) do
+      {:ok, list} -> add_parsed_ingredients_to_changeset(list,socket)
+      {:error, _} -> Map.put(socket.assigns.changeset, :errors, [parser: {"couldnt parse ingredients",[vailidation: :required]}])
+    end
+    {:noreply, assign(socket, :changeset, changeset)}
+  end
+  def add_parsed_ingredients_to_changeset(list, socket) do
+    existing_recipe_ingredients = Map.get(socket.assigns.changeset.changes, :recipe_ingredients, socket.assigns.recipe.recipe_ingredients)
+    recipe_ingredients =
+      existing_recipe_ingredients
+        |> Enum.concat(
+            add_parsed_ingredients_to_changeset_helper(list)
+          )
+    socket.assigns.changeset
+      |> Ecto.Changeset.put_assoc(:recipe_ingredients, recipe_ingredients)
+  end
+
+  defp add_parsed_ingredients_to_changeset_helper([head]) do
+      [Content.change_recipe_ingredient(%Recipe_ingredient{temp_id: get_temp_id()}, head)]
+  end
+  defp add_parsed_ingredients_to_changeset_helper([head|tail]) do
+    [
+      Content.change_recipe_ingredient(%Recipe_ingredient{temp_id: get_temp_id()}, head) | add_parsed_ingredients_to_changeset_helper(tail)
+    ]
   end
 
   defp save_recipe(socket, :edit, recipe_params) do

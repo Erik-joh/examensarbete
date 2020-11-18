@@ -18,19 +18,19 @@ defmodule XarbWeb.RecipeLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Recipe")
+    |> assign(:page_title, "Ändra recept")
     |> assign(:recipe, Content.get_recipe!(socket.assigns.current_user, id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Recipe")
+    |> assign(:page_title, "Nytt recept")
     |> assign(:recipe, %Recipe{recipe_ingredients: []})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Recipes")
+    |> assign(:page_title, "Recept")
     |> assign(:recipe, nil)
   end
 

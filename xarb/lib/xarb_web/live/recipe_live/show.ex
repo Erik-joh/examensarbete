@@ -19,8 +19,8 @@ defmodule XarbWeb.RecipeLive.Show do
      |> assign(:recipe, get_recipe(socket.assigns.current_user ,id))}
   end
 
-  defp page_title(:show), do: "Show Recipe"
-  defp page_title(:edit), do: "Edit Recipe"
+  defp page_title(:show), do: "Visa recept"
+  defp page_title(:edit), do: "Ändra recept"
 
   def get_recipe(user,id) do
     recipe = Content.get_recipe!(user,id)

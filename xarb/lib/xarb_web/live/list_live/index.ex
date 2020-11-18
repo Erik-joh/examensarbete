@@ -18,19 +18,19 @@ defmodule XarbWeb.ListLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit List")
+    |> assign(:page_title, "Ändra inköpslista")
     |> assign(:list, Shoppinglist.get_list!(socket.assigns.current_user, id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New List")
+    |> assign(:page_title, "Ny inköpslista")
     |> assign(:list, %List{list_ingredients: []})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Lists")
+    |> assign(:page_title, "inköpslistor")
     |> assign(:list, nil)
   end
 

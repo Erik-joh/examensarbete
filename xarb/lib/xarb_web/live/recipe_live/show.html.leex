@@ -1,5 +1,4 @@
 
-
 <%= if @live_action in [:edit] do %>
   <%= live_modal @socket, XarbWeb.RecipeLive.FormComponent,
     id: @recipe.id,
@@ -22,9 +21,9 @@
 <table>
   <thead>
     <tr>
-      <th>Amount</th>
-      <th>Measurement</th>
-      <th>Name</th>
+      <th>Mängd</th>
+      <th>Mått</th>
+      <th>Namn</th>
 
       <th></th>
     </tr>
@@ -45,5 +44,5 @@
   </li>
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.recipe_show_path(@socket, :edit, @recipe), class: "button" %></span>
-<span><%= live_redirect "Back", to: Routes.recipe_index_path(@socket, :index) %></span>
+<span><%= live_patch "Ändra", to: Routes.recipe_show_path(@socket, :edit, @recipe), class: "button" %></span>
+<span><%= live_redirect "Tillbaka", to: Routes.recipe_index_path(@socket, :index) %></span>

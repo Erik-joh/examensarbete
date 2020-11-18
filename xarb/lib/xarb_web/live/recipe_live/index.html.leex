@@ -1,4 +1,4 @@
-<h1>Listing Recipes</h1>
+<h1>Recept</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, XarbWeb.RecipeLive.FormComponent,
@@ -13,9 +13,9 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Instructions</th>
-      <th>Source</th>
+      <th>Titel</th>
+
+      <th>Källa</th>
 
       <th></th>
     </tr>
@@ -24,17 +24,17 @@
     <%= for recipe <- @recipes do %>
       <tr id="recipe-<%= recipe.id %>">
         <td><%= recipe.title %></td>
-        <td><%= recipe.instructions %></td>
+
         <td><%= recipe.source %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.recipe_show_path(@socket, :show, recipe) %></span>
-          <span><%= live_patch "Edit", to: Routes.recipe_index_path(@socket, :edit, recipe) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: recipe.id, data: [confirm: "Are you sure?"] %></span>
+          <span><%= live_redirect "Visa", to: Routes.recipe_show_path(@socket, :show, recipe) %></span>
+          <span><%= live_patch "Ändra", to: Routes.recipe_index_path(@socket, :edit, recipe) %></span>
+          <span><%= link "Ta bort", to: "#", phx_click: "delete", phx_value_id: recipe.id, data: [confirm: "Are you sure?"] %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Recipe", to: Routes.recipe_index_path(@socket, :new) %></span>
+<span><%= live_patch "Nytt Recept", to: Routes.recipe_index_path(@socket, :new) %></span>

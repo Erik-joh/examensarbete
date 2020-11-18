@@ -6,17 +6,23 @@
   phx_change: "validate",
   phx_submit: "save" %>
 
-  <%= label f, :title %>
+  <%= label f, :titel %>
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
 
-  <%= label f, :instructions %>
+  <%= label f, :instruktioner %>
   <%= textarea f, :instructions %>
   <%= error_tag f, :instructions %>
 
-  <%= label f, :source %>
+  <%= label f, :källa %>
   <%= text_input f, :source %>
   <%= error_tag f, :source %>
+
+  <%= label f, "Klistra in ingredienser här:" %>
+  <%= textarea f, :parser %>
+  <%= error_tag f, :parser %>
+
+  <a href="#" phx-click="add-parsed_recipe_ingredients" phx-value-recipe="<%= input_value(f, :parser) %>" phx-target="<%= @myself %>">Lägg till ingredienser</a>
 
   <h2 class="mt-4 mb-2 font-bold">Ingredienser</h2>
 
@@ -33,26 +39,27 @@
         <%= if ri.data.id != nil do %>
           <%= hidden_input ri, :id %>
         <% end %>
-        <td>
-          <%= label ri, :amount %>
+        <td class="amount">
+          <%= label ri, :mängd %>
           <%= text_input ri, :amount, class: "form-control" %>
           <%= error_tag ri, :amount %>
         </td>
-        <td>
-          <%= label ri, :measurement %>
+        <td class="measurement">
+          <%= label ri, :mått %>
           <%= text_input ri, :measurement, class: "form-control" %>
           <%= error_tag ri, :measurement %>
         </td>
-        <td>
-          <%= label ri, :name %>
+        <td class="name">
+          <%= label ri, :namn %>
           <%= text_input ri, :name, class: "form-control" %>
           <%= error_tag ri, :name %>
         </td>
-        <td>
-          <%= label ri, :delete %><br>
+        <td class="delete">
         <%= if is_nil(ri.data.temp_id) do %>
+          <%= label ri, "Ta bort" %>
           <%= checkbox ri, :delete %>
         <% else %>
+
           <%= hidden_input ri, :temp_id %>
           <a href="#" phx-click="remove-recipe_ingredient" phx-value-remove="<%= ri.data.temp_id %>" phx-target="<%= @myself %>">&times</a>
         <% end %>
@@ -63,7 +70,7 @@
 </table>
 <% end %>
 
-  <a href="#" phx-click="add-recipe_ingredient" phx-target="<%= @myself %>">Add ingredient</a>
+  <a href="#" phx-click="add-recipe_ingredient" phx-target="<%= @myself %>">Lägg till ingrediens</a>
   <p></p>
-  <div><%= submit "Save", phx_disable_with: "Saving..." %></div>
+  <div><%= submit "Spara", phx_disable_with: "Sparar..." %></div>
 </form>

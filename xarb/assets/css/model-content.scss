@@ -1,0 +1,46 @@
+.phx-modal-content {
+    background-color: #fcfcfc;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 30px;
+    max-width: 50vw;
+    * {
+        font-family: 'Patrick Hand', cursive;
+      }
+    table{
+        margin-bottom: 0px;
+    }
+    .amount{
+        width: 15%;
+    }
+    .measurement{
+        width: 15%;
+    }
+    .name{
+        width: 60%;
+    }
+    .delete{
+        display: flex;
+        flex-direction: column;
+        input{margin-top: 11px;}
+    }
+    
+    td{
+        
+        margin: 0;
+        padding: 0;
+        
+        a {
+            font-size: 40px;
+            margin-left: 15px;
+            
+            color: gray;
+            
+        }
+        a:hover{
+            color: black;
+        }
+    }
+  
+}
+   

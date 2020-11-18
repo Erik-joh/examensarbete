@@ -98,7 +98,7 @@ defmodule Xarb.Parser do
     end
   end
 
-  defp is_measurement?(string, list \\ ["ml","cl","dl","l","kg","g","tsk","msk","liten","stor","normal"])
+  defp is_measurement?(string, list \\ ["ml","cl","dl","l","kg","g","krm","tsk","msk","liten","stor","normal","st","kruka"])
   defp is_measurement?(string, [head]), do: String.equivalent?(string, head)
   defp is_measurement?(string, [head|tail]) do
     case String.equivalent?(string, head) do

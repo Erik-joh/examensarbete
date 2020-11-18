@@ -1,4 +1,4 @@
-<h1>Listing Lists</h1>
+<h1>Inköpslistor</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, XarbWeb.ListLive.FormComponent,
@@ -25,16 +25,16 @@
       <tr id="list-<%= list.id %>">
         <td><%= list.titel %></td>
         <td><%= list.inserted_at %></td>
-        <td><%=  if list.finished do "Färdig" else "Handla" end %></td>
+        <td><%=  if list.finished do "Ja" else "Nej" end %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.list_show_path(@socket, :show, list) %></span>
-          <span><%= live_patch "Edit", to: Routes.list_index_path(@socket, :edit, list) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: list.id, data: [confirm: "Are you sure?"] %></span>
+          <span><%= live_redirect "Visa", to: Routes.list_show_path(@socket, :show, list) %></span>
+          <span><%= live_patch "Ändra", to: Routes.list_index_path(@socket, :edit, list) %></span>
+          <span><%= link "Ta bort", to: "#", phx_click: "delete", phx_value_id: list.id, data: [confirm: "Are you sure?"] %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New List", to: Routes.list_index_path(@socket, :new) %></span>
+<span><%= live_patch "Ny lista", to: Routes.list_index_path(@socket, :new) %></span>

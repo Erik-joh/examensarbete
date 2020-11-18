@@ -3,7 +3,7 @@ defmodule Xarb.Content.Recipe_ingredient do
   import Ecto.Changeset
 
   schema "recipe_ingredients" do
-    field :amount, :integer
+    field :amount, :float
     field :measurement, :string
     field :name, :string
     field :temp_id, :string, virtual: true
@@ -18,7 +18,7 @@ defmodule Xarb.Content.Recipe_ingredient do
     recipe_ingredient
     |> Map.put(:temp_id, (recipe_ingredient.temp_id || attrs["temp_id"]))
     |> cast(attrs, [:name, :amount, :measurement, :delete])
-    |> validate_required([:name, :amount, :measurement])
+    |> validate_required([:name])
     |> unique_constraint(:name, name: :recipe_ingredients_name_recipe_id_index)
     |> maybe_mark_for_deletion()
   end

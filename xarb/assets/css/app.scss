@@ -2,6 +2,10 @@
 @import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
 @import "./current_list.scss";
+@import "./model-content.scss";
+@import "./nav-menu.scss";
+@import "./main-conatainer.scss";
+@import "./form.scss";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
@@ -35,13 +39,15 @@
 }
 
 .phx-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 40px;
   border: 1px solid #888;
-  width: 80%;
+  width: 60%;
 }
-
+.phx-modal-content * {
+  font-family: 'Patrick Hand', cursive;
+}
 .phx-modal-close {
   color: #aaa;
   float: right;

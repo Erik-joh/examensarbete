@@ -59,12 +59,11 @@ defmodule XarbWeb.ListLive.FormComponent do
     {:noreply, assign(socket, changeset: changeset)}
   end
 
-  def handle_event("add-parsed_list_ingredients", %{"list" => list_params},socket) do
+  def handle_event("add-parsed_list_ingredients", %{"list" => list_params}, socket) do
     changeset = case IO.inspect(Parser.parse_ingredients(list_params)) do
       {:ok, list} -> add_parsed_ingredients_to_changeset(list,socket)
       {:error, _} -> Map.put(socket.assigns.changeset, :errors, [parser: {"couldnt parse ingredients",[vailidation: :required]}])
     end
-
     {:noreply, assign(socket, :changeset, changeset)}
   end
   def add_parsed_ingredients_to_changeset(list, socket) do

@@ -1,5 +1,5 @@
 <section class="current_list">
-  <h1>current list<h1>
+  <h1>Nuvarande Inköpslista<h1>
 
 
   <%= if @list != [] do %>
@@ -11,8 +11,8 @@
     </span>
 
     <span>
-      <strong>Finished:</strong>
-      <%= @list.finished %>
+      <strong>Färdig:</strong>
+      <%= if @list.finished do "Ja" else "Nej" end%>
     </span>
   <div>
 
@@ -20,10 +20,10 @@
   <table>
     <thead>
       <tr>
-        <th>Amount</th>
-        <th>Measurement</th>
-        <th>Name</th>
-        <th>Done</th>
+        <th>Mängd</th>
+        <th>Mått</th>
+        <th>Namn</th>
+        <th>Färdig</th>
 
         <th></th>
       </tr>
@@ -57,6 +57,6 @@
         </tbody>
   </table>
   <% else  %>
-  <h3>No current shopping list exists</h3>
+  <h3>Det existerar ingen nuvarande lista</h3>
   <% end %>
 </section>

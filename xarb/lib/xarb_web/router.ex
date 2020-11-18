@@ -57,7 +57,7 @@ defmodule XarbWeb.Router do
   scope "/", XarbWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    live "/", PageLive, :index
+    live "/", RecipeLive.Index, :index
 
     # Recipe routes
     live "/recipes", RecipeLive.Index, :index

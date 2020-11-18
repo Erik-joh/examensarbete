@@ -19,8 +19,8 @@ defmodule XarbWeb.ListLive.Show do
      |> assign(:list, get_list(socket.assigns.current_user ,id))}
   end
 
-  defp page_title(:show), do: "Show List"
-  defp page_title(:edit), do: "Edit List"
+  defp page_title(:show), do: "Visa inköpslista"
+  defp page_title(:edit), do: "Ändra inköpslista"
 
   def get_list(user,id) do
     list = Shoppinglist.get_list!(user,id)

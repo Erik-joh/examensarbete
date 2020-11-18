@@ -10,16 +10,16 @@
   <%= text_input f, :titel %>
   <%= error_tag f, :titel %>
 
-  <%= label f, :finished %>
+  <%= label f, :färdig %>
   <%= checkbox f, :finished %>
   <%= error_tag f, :finished %>
 
-  <%= label f, :parser %>
+  <%= label f, "Klistra in ingredienser här:" %>
   <%= textarea f, :parser %>
   <%= error_tag f, :parser %>
 
 
-  <a href="#" phx-click="add-parsed_list_ingredients" phx-value-list="<%= input_value(f, :parser) %>" phx-target="<%= @myself %>">Add ingredients</a>
+  <a href="#" phx-click="add-parsed_list_ingredients" phx-value-list="<%= input_value(f, :parser) %>" phx-target="<%= @myself %>">Lägg till ingredienser</a>
 
   <h2 class="mt-4 mb-2 font-bold">Ingredienser</h2>
 
@@ -36,23 +36,23 @@
         <%= if li.data.id != nil do %>
           <%= hidden_input li, :id %>
         <% end %>
-        <td>
-          <%= label li, :amount %>
+        <td class="amount">
+          <%= label li, :mängd %>
           <%= text_input li, :amount, class: "form-control" %>
           <%= error_tag li, :amount %>
         </td>
-        <td>
-          <%= label li, :measurement %>
+        <td class="measurement">
+          <%= label li, :mått %>
           <%= text_input li, :measurement, class: "form-control" %>
           <%= error_tag li, :measurement %>
         </td>
-        <td>
-          <%= label li, :name %>
+        <td class="name">
+          <%= label li, :namn %>
           <%= text_input li, :name, class: "form-control" %>
           <%= error_tag li, :name %>
         </td>
-        <td>
-          <%= label li, :delete %><br>
+        <td class="delete">
+          <%= label li, "ta bort" %><br>
         <%= if is_nil(li.data.temp_id) do %>
           <%= checkbox li, :delete %>
         <% else %>
@@ -66,7 +66,7 @@
 </table>
 <% end %>
 
-  <a href="#" phx-click="add-list_ingredient" phx-target="<%= @myself %>">Add ingredient</a>
+  <a href="#" phx-click="add-list_ingredient" phx-target="<%= @myself %>">Lägg till ingrediens</a>
   <p></p>
-  <%= submit "Save", phx_disable_with: "Saving..." %>
+  <%= submit "Spara", phx_disable_with: "Sparar..." %>
 </form>

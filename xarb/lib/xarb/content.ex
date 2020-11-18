@@ -205,4 +205,5 @@ defmodule Xarb.Content do
   def change_recipe_ingredient(%Recipe_ingredient{} = recipe_ingredient, attrs \\ %{}) do
     Recipe_ingredient.changeset(recipe_ingredient, attrs)
   end
+
 end

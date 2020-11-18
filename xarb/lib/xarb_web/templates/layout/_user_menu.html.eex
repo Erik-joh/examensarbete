@@ -1,13 +1,14 @@
-<ul>
+<ul class="nav-menu">
 <%= if @current_user do %>
-  <li><%= @current_user.email %></li>
-  <li><%= link "Recipes", to: "/recipes" %></li>
-  <li><%= link "Shoppinglists", to: "/lists" %></li>
-  <li><%= link "Current shoppinglist", to: "/currentList"%></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+  <div>
+    <li><%= link "Inställningar", to: Routes.user_settings_path(@conn, :edit) %></li>
+    <li><%= link "Logga ut", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+  </div>
+  <li><%= link "Recept", to: "/recipes" %></li>
+  <li><%= link "Inköpslistor", to: "/lists" %></li>
+  <li><%= link "Nuvarande inköpslista", to: "/currentList"%></li>
 <% else %>
-  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
+  <li><%= link "Registrera", to: Routes.user_registration_path(@conn, :new) %></li>
+  <li><%= link "Logga in", to: Routes.user_session_path(@conn, :new) %></li>
 <% end %>
 </ul>

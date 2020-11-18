@@ -16,11 +16,14 @@ html {
   font-size: 62.5%;
 }
 body {
+  height: 100vh;
+  background-color: #262626;
   color: #000000;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Patrick Hand", cursive;
   font-size: 1.6em;
   font-weight: 300;
   line-height: 1.6;
+  margin: 0;
 }
 blockquote {
   border-left: 0.3rem solid #d1d1d1;
@@ -551,7 +554,7 @@ pre {
 .container {
   margin: 0 auto;
   max-width: 80rem;
-  padding: 0 2rem;
+
   position: relative;
   width: 100%;
 }
